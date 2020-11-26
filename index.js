@@ -40,7 +40,7 @@ app.post('/orders', (req, res) => {
 
           //const result = await connection.execute("SELECT pcpedi.codprod, pcpedi.numped, pcpedi.data, pcpedi.pvenda, pcpedi.codusur, pcpedi.qt, pcpedi.pvenda, pcpedi.ptabela, pcpedi.posicao, pcpedi.st, pcpedi.vlcustofin, pcpedi.vlcustoreal, pcpedi.percom, pcpedi.perdesc, pcpedi.numseq, pcpedi.codst FROM pcpedi");
           console.log(query);
-          const result = await connection.execute(query).com;
+          const result = await connection.execute(query);
           connection.commit();          
           return res.status(200).send({ data: result });
           
