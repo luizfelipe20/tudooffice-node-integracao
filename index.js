@@ -33,15 +33,16 @@ app.post('/orders', (req, res) => {
           password      : "TUDOOFFICEPROD1801",
           connectString : "(DESCRIPTION = ( ADDRESS = ( PROTOCOL = TCP )( HOST = 172.31.252.98 )( PORT = 1521 ))( CONNECT_DATA = (SID = TUOF5129)))"
         },
-        function(err, connection) {
+        async function(err, connection) {
           if (err){
             return res.status(400).send({ error: err });
           }
 
-          const result = connection.execute("SELECT * FROM pcpedi");
-          console.log(result.rows);
-          
-          return res.status(200).send({ data: result.rows });
+          //const result = await connection.execute("SELECT pcpedi.codprod, pcpedi.numped, pcpedi.data, pcpedi.pvenda, pcpedi.codusur, pcpedi.qt, pcpedi.pvenda, pcpedi.ptabela, pcpedi.posicao, pcpedi.st, pcpedi.vlcustofin, pcpedi.vlcustoreal, pcpedi.percom, pcpedi.perdesc, pcpedi.numseq, pcpedi.codst FROM pcpedi");
+          console.log(query);
+          const result = await connection.execute(query).com;
+          connection.commit();          
+          return res.status(200).send({ data: result });
           
           /*connection.execute(,
             function(err, result) {
